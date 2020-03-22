@@ -1,5 +1,7 @@
 require 'set'
 
+#in-flight entertainment --> blog 3/21/20
+
 def can_watch_two_movies?(flight_duration, movie_arr)
 
   movie_set = Set.new
