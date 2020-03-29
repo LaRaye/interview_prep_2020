@@ -32,10 +32,11 @@ def all_unique?(str)
     if char_hash[char]
       return false
     else
-      char_hash[char] = true 
+      char_hash[char] = true
     end
   end
 
+  return true 
 end
 
 #without array, store each character in variable, iterate through & compare
