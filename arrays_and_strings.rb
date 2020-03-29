@@ -26,8 +26,16 @@ def all_unique?(str)
     return false
   end
 
-  char_hash = {}
-  
+  char_hash = Hash.new(false)
+
+  str.each_char do |char|
+    if char_hash[char]
+      return false
+    else
+      char_hash[char] = true 
+    end
+  end
+
 end
 
 #without array, store each character in variable, iterate through & compare
