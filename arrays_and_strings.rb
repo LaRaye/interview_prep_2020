@@ -26,6 +26,7 @@ def all_unique?(str)
     return false
   end
 
+  char_hash = {}
   
 end
 
