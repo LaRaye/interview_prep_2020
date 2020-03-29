@@ -21,6 +21,7 @@ def all_unique?(str)
 
 end
 
+#with another data structure --> using hash
 def all_unique?(str)
   if str.length > 26
     return false
@@ -36,7 +37,7 @@ def all_unique?(str)
     end
   end
 
-  return true 
+  return true
 end
 
 #without array, store each character in variable, iterate through & compare
