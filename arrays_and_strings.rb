@@ -101,29 +101,21 @@ end
 # [0,5,6]   [0,0,0]
 # [7,8,9]   [0,8,9]
 
-#zeroed_mareix = [[0,2,3], [0,0,0], [0,8,9]]
+#zeroed_matrix = [[0,2,3], [0,0,0], [0,8,9]]
 
 matrix = [[1,2,3],[0,5,6],[7,8,9]]
 
 def set_zeroes(matrix)
-  column = nil
-  row = nil
+  column = []
+  row = []
 
   matrix.each_with_index do |row_arr, index|
-
     row_arr.each_with_index do |el, i|
       if el == 0
-        column = i
-        row = index
-        binding.pry
+
       end
     end
 
-  end
-
-  if column != nil
-    matrix[row].each {|el| el = 0}
-    matrix.each {|row_arr| row_arr[column] = 0}
   end
 
   return matrix
