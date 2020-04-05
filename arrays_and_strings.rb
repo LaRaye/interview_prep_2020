@@ -124,6 +124,12 @@ def set_zeroes(matrix)
     end
   end
 
+  columns.each_with_index do |v, i|
+    if v
+      matrix.each {|row_arr| row_arr[i] = 0}
+    end
+  end
+
   return matrix
 end
 
