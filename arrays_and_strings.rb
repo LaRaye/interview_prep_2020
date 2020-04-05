@@ -112,10 +112,10 @@ def set_zeroes(matrix)
   matrix.each_with_index do |row_arr, index|
     row_arr.each_with_index do |el, i|
       if el == 0
-
+        rows[index] = true
+        columns[i] = true
       end
     end
-
   end
 
   return matrix
