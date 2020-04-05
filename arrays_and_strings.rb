@@ -133,6 +133,30 @@ def set_zeroes(matrix)
   return matrix
 end
 
+def set_zeroes(matrix)
+  rows = {}
+  columns = {}
+
+  matrix.each_with_index do |row_arr, index|
+    row_arr.each_with_index do |el, i|
+      if el == 0
+        rows[index] = true
+        columns[i] = true
+      end
+    end
+  end
+
+  rows.each_key do |k|
+    matrix[k] = matrix[k].collect {|el| el = 0}
+  end
+
+  columns.each_key do |k|
+    matrix.each {|row_arr| row_arr[k] = 0}
+  end
+
+  return matrix
+end
+
 ########################
 
 #try to create #is_substring?
