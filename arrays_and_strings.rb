@@ -118,6 +118,12 @@ def set_zeroes(matrix)
     end
   end
 
+  rows.each_with_index do |v, i|
+    if v
+      matrix[i] = matrix[i].collect {|el| el = 0}
+    end
+  end
+
   return matrix
 end
 
