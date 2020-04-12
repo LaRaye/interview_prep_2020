@@ -112,4 +112,5 @@ def find_kth_to_last(linked_list, k)
     end
   end
 
+  return pointer_2
 end
