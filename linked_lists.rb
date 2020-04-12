@@ -107,7 +107,7 @@ def find_kth_to_last(linked_list, k)
       pointer_1 = pointer_1.next
     else
       pointer_1 = pointer_1.next
-  
+      pointer_2 = linked_list.head 
     end
   end
 
