@@ -93,23 +93,22 @@ end
 
 ###############################
 
+# k = 3
+# 1 => 2 => 3 => 4 => [5] => 6 => 7
+
 def find_kth_to_last(linked_list, k)
-  current_node = linked_list.head
-  pointer_1 = 0
-  pointer_2 = 0
+  pointer_1 = linked_list.head
+  counter = 1
 
-  while current_node.next != nil
+  while pointer_1.next != nil
 
-    unless pointer_1 == k
-      pointer_1 += 1
-      current_node = current_node.next
+    if counter != k
+      counter += 1
+      pointer_1 = pointer_1.next
     else
-      pointer_1 += 1
-      pointer_2 += 1
-      current_node = current_node.next 
+      pointer_1 = pointer_1.next
+  
     end
-
-
   end
 
 end
