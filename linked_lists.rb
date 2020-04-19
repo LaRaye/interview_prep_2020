@@ -114,3 +114,17 @@ def find_kth_to_last(linked_list, k)
 
   return pointer_2.value
 end
+
+################################
+
+# Input: 1->4->3->2->5->2, x = 3
+# Output: 1->2->2->4->3->5
+
+def partition(linked_list, x)
+  current_node = linked_list.head
+
+  while current_node.next != nil
+
+
+  end
+end
