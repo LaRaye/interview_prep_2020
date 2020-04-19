@@ -122,11 +122,17 @@ end
 
 def partition(linked_list, x)
   current_node = linked_list.head
-  before = LinkedList.new 
+  before = LinkedList.new
   after = LinkedList.new
 
   while current_node.next != nil
+    if current_node.value < x
+      before.append(current_node)
+      current_node = current_node.next
+    elsif current_node.value >= x
+      
 
+    end
 
   end
 end
