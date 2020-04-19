@@ -125,7 +125,7 @@ def partition(linked_list, x)
   before = LinkedList.new
   after = LinkedList.new
 
-  while current_node.next != nil
+  while current_node != nil
     if current_node.value < x && current_node.value != nil
       before.append(current_node)
       current_node = current_node.next
@@ -133,6 +133,7 @@ def partition(linked_list, x)
       after.append(current_node)
       current_node = current_node.next
     end
-
   end
+
+  return before.append(after)
 end
