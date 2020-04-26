@@ -74,7 +74,7 @@ end
 class Node
   attr_accessor :next, :value
 
-  def initialize(value)
+  def initialize(value = nil)
     @value = value
     @next  = nil
   end
@@ -155,8 +155,28 @@ end
 ################################
 
 # 1 -> 2 -> 3 -> 2 -> 1
-# 2 -> 3 -> 2 -> 1
+# a -> b -> c -> d
+# D -> C -> B -> A -> nil
 
 def palindrome?(linked_list)
-  
+  current_node = linked_list.head
+  current_node_copy = Node.new(current_node.value)
+  previous_node = nil
+  next_node = nil
+
+  while current_node != nil
+    if current_node.next.value != nil
+      next_node = Node.new(current_node.next.value)
+    else
+      next_node = nil
+    end
+
+    current_node_copy.next = previous_node
+    previous_node = current_node_copy
+
+    current_node_copy = next_node
+    current_node = current_node.next
+  end
+
+  previous_node
 end
