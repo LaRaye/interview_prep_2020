@@ -1,4 +1,6 @@
 class LinkedList
+  attr_reader :head
+
   def initialize
     @head = nil
   end
@@ -9,8 +11,12 @@ class LinkedList
       @head = Node.new(value)
     end
   end
-  def head
-    @head
+  def add(node)
+    if @head
+      find_tail.next = node
+    else
+      @head = node
+    end
   end
   def head=(node)
     if @head
