@@ -155,8 +155,6 @@ end
 ################################
 
 # 1 -> 2 -> 3 -> 2 -> 1
-# a -> b -> c -> d
-# D -> C -> B -> A -> nil
 
 def palindrome?(linked_list)
   current_node = linked_list.head
@@ -191,4 +189,20 @@ def palindrome?(linked_list)
   end
 
   return true
+end
+
+#################################
+def reverse_list_in_place(linked_list)
+  current_node = linked_list.head
+  previous_node = nil
+  next_node = nil
+
+  while current_node != nil
+    next_node = current_node.next
+    current_node.next = previous_node
+    previous_node = current_node
+    current_node = next_node
+  end
+
+  previous_node
 end
