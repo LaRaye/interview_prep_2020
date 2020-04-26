@@ -137,3 +137,19 @@ def partition(linked_list, x)
 
   return before.append(after)
 end
+
+################################
+
+def palindrome?(linked_list)
+  current_node = linked_list.head
+  reversed = LinkedList.new
+
+  while current_node
+    
+
+
+
+  end
+
+
+end
