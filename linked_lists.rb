@@ -165,7 +165,7 @@ def palindrome?(linked_list)
   next_node = nil
 
   while current_node != nil
-    if current_node.next.value != nil
+    if current_node.next != nil
       next_node = Node.new(current_node.next.value)
     else
       next_node = nil
@@ -178,5 +178,17 @@ def palindrome?(linked_list)
     current_node = current_node.next
   end
 
-  previous_node
+  reversed = previous_node
+  original = linked_list.head
+
+  while reversed != nil && original != nil
+    if reversed.value != original.value
+      return false
+    else
+      reversed = reversed.next
+      original = original.next
+    end
+  end
+
+  return true
 end
