@@ -9,6 +9,17 @@ class LinkedList
       @head = Node.new(value)
     end
   end
+  def head
+    @head
+  end
+  def head=(node)
+    if @head
+      node.next = @head
+      @head = node
+    else
+      @head = node
+    end
+  end
   def find_tail
     node = @head
     return node if !node.next
@@ -47,22 +58,19 @@ class LinkedList
   end
   def print
     node = @head
-    puts node
-    while (node = node.next)
-      puts node
+    while node
+      puts node.value
+      node = node.next
     end
   end
 end
 
 class Node
-  attr_accessor :next
-  attr_reader   :value
+  attr_accessor :next, :value
+
   def initialize(value)
     @value = value
     @next  = nil
-  end
-  def to_s
-    "Node with value: #{@value}"
   end
 end
 #########################
