@@ -24,11 +24,13 @@ class LinkedList
   end
 
   def peek
-    self.head
+    @head
   end
 
   def pop
-    self.head = self.head.next
+    if @head
+      @head = @head.next
+    end
   end
 
   def tail=(node)
@@ -80,7 +82,7 @@ class LinkedList
 
   def print
     node = @head
-    while node
+    while node != nil
       puts node.value
       node = node.next
     end
@@ -133,10 +135,20 @@ class AnimalQueue
     first_cat = @@cat_list.peek
     first_dog = @@dog_list.peek
 
-    if first_cat.is_older?(first_dog)
+    unless first_cat == nil || first_dog == nil
+      if first_cat.value.is_older?(first_dog.value)
+        dequeue_cat
+      else
+        dequeue_dog
+      end
+    end
+
+    if first_cat && !first_dog
       dequeue_cat
-    else
+    elsif first_dog && !first_cat
       dequeue_dog
+    else
+      return nil
     end
   end
 

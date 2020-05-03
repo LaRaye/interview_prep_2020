@@ -64,7 +64,7 @@ class LinkedList
   end
   def print
     node = @head
-    while node
+    while node != nil 
       puts node.value
       node = node.next
     end
