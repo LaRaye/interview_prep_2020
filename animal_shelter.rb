@@ -8,7 +8,7 @@ class Node
 end
 
 class LinkedList
-  attr_reader :head
+  attr_reader :head, :tail
 
   def initialize
     @head = nil
@@ -21,6 +21,12 @@ class LinkedList
     else
       @head = node
     end
+  end
+
+  def tail=(node)
+    node = @head
+    return node if !node.next
+    return node if !node.next while (node = node.next)
   end
 
   def delete(value)
@@ -77,5 +83,8 @@ class Cat < Animal
 end
 
 class AnimalQueue
+  dog_list = LinkedList.new
+  cat_list = LinkedList.new
+
 
 end
