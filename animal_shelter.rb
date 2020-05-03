@@ -23,6 +23,14 @@ class LinkedList
     end
   end
 
+  def peek
+    self.head
+  end
+
+  def pop
+    self.head = self.head.next
+  end
+
   def tail=(node)
     find_tail.next = node
     @tail = node
@@ -108,17 +116,43 @@ class Cat < Animal
 end
 
 class AnimalQueue
-  dog_list = LinkedList.new
-  cat_list = LinkedList.new
+  @@dog_list = LinkedList.new
+  @@cat_list = LinkedList.new
 
   def enqueue(animal)
     if animal.is_a? Dog
       animal.set_timestamp
-      dog_list.append(animal)
+      @@dog_list.append(animal)
     elsif animal.is_a? Cat
       animal.set_timestamp
-      cat_list.append(animal)
+      @@cat_list.append(animal)
     end
   end
 
+  def dequeue_any
+    first_cat = @@cat_list.peek
+    first_dog = @@dog_list.peek
+
+    if first_cat.is_older?(first_dog)
+      dequeue_cat
+    else
+      dequeue_dog
+    end
+  end
+
+  def dequeue_dog
+    @@dog_list.pop
+  end
+
+  def dequeue_cat
+    @@cat_list.pop
+  end
+
+  def print_cats
+    @@cat_list.print
+  end
+
+  def print_dogs
+    @@dog_list.print
+  end
 end
