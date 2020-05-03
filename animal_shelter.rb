@@ -24,9 +24,30 @@ class LinkedList
   end
 
   def tail=(node)
+    find_tail.next = node
+    @tail = node
+  end
+
+  def find_tail
     node = @head
     return node if !node.next
     return node if !node.next while (node = node.next)
+  end
+
+  def append(value)
+    if @head
+      find_tail.next = Node.new(value)
+    else
+      @head = Node.new(value)
+    end
+  end
+
+  def add(node)
+    if @head
+      find_tail.next = node
+    else
+      @head = node
+    end
   end
 
   def delete(value)
@@ -63,6 +84,10 @@ class Animal
   attr_accessor :timestamp
 
   def initialize
+    self.timestamp = nil
+  end
+
+  def set_timestamp
     self.timestamp = Time.now
   end
 
@@ -86,5 +111,14 @@ class AnimalQueue
   dog_list = LinkedList.new
   cat_list = LinkedList.new
 
+  def enqueue(animal)
+    if animal.is_a? Dog
+      animal.set_timestamp
+      dog_list.append(animal)
+    elsif animal.is_a? Cat
+      animal.set_timestamp
+      cat_list.append(animal)
+    end
+  end
 
 end
