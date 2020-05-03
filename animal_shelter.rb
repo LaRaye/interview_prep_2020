@@ -1,3 +1,6 @@
+##################################
+#Animal Shelter
+
 class Node
   attr_accessor :next, :value
 
@@ -7,11 +10,12 @@ class Node
   end
 end
 
-class LinkedList
+class Queue
   attr_reader :head, :tail
 
   def initialize
     @head = nil
+    @tail = nil
   end
 
   def head=(node)
@@ -21,6 +25,11 @@ class LinkedList
     else
       @head = node
     end
+  end
+
+  def tail=(node)
+    @tail.next = node
+    @tail = node
   end
 
   def peek
@@ -33,51 +42,16 @@ class LinkedList
     end
   end
 
-  def tail=(node)
-    find_tail.next = node
-    @tail = node
-  end
+  def push(value)
+    node = Node.new(value)
 
-  def find_tail
-    node = @head
-    return node if !node.next
-    return node if !node.next while (node = node.next)
-  end
-
-  def append(value)
-    if @head
-      find_tail.next = Node.new(value)
-    else
-      @head = Node.new(value)
-    end
-  end
-
-  def add(node)
-    if @head
-      find_tail.next = node
-    else
+    unless @head
       @head = node
-    end
-  end
-
-  def delete(value)
-    if @head.value == value
-      @head = @head.next
-      return
+    else
+      @tail.next = node
     end
 
-    node = find_before(value)
-    node.next = node.next.next
-  end
-
-  def find_before(value)
-    node = @head
-    return false if !node.next
-    return node  if node.next.value == value
-
-    while (node = node.next)
-      return node if node.next && node.next.value == value
-    end
+    @tail = node
   end
 
   def print
@@ -118,16 +92,16 @@ class Cat < Animal
 end
 
 class AnimalQueue
-  @@dog_list = LinkedList.new
-  @@cat_list = LinkedList.new
+  @@dog_list = Queue.new
+  @@cat_list = Queue.new
 
   def enqueue(animal)
     if animal.is_a? Dog
       animal.set_timestamp
-      @@dog_list.append(animal)
+      @@dog_list.push(animal)
     elsif animal.is_a? Cat
       animal.set_timestamp
-      @@cat_list.append(animal)
+      @@cat_list.push(animal)
     end
   end
 
