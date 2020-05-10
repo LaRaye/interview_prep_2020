@@ -58,29 +58,51 @@ class Graph
     v1.edges.insert(v2.key)
   end
 
-  def remove_vertex(key)
-    found = false
-    target = nil
-    prev = nil
+  # def remove_vertex(key)
+  #   found = false
+  #   target = nil
+  #   prev = nil
+  #
+  #   @vertices.each do |v|
+  #     return if v.value.edges.contains?(key)
+  #
+  #     if v.value.key == key
+  #       found = true
+  #       target = v.value
+  #     end
+  #
+  #     prev = v unless found
+  #   end
+  #
+  #   return unless found
+  #   return unless target.edges.length == 0
+  #   @vertices.remove_next(prev)
+  # end
 
-    @vertices.each do |v|
-      return if v.value.edges.contains?(key)
-
-      if v.value.key == key
-        found = true
-        target = v.value
-      end
-
-      prev = v unless found
-    end
-
-    return unless found
-    return unless target.edges.length == 0
-    @vertices.remove_next(prev)
-  end
+  # def remove_vertex(key)
+  #   found = false
+  #   target = nil
+  #   prev = nil
+  #
+  #   node = @vertices.head
+  #   while (node = node.next)
+  #     return if node.value.edges.contains?(key)
+  #
+  #     if node.value.key == key
+  #       found = true
+  #       target = node.value
+  #     end
+  #
+  #     prev = node unless found
+  #   end
+  #
+  #   return unless found
+  #   return unless target.edges.length == 0
+  #   @vertices.remove_next(prev)
+  # end
 
   def adjacent?(key1, key2)
-    vertex = find_vertex(key1).value
+    vertex = find_vertex(key1)
     return true if vertex.edges.contains?(key2)
     return false
   end
