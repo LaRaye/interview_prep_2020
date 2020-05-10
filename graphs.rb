@@ -18,7 +18,7 @@ class LinkedList
     node = @head
     while node != nil
       puts "#{node.value.key} (vertex)"
-      node.value.edges.each {|e| puts "  #{e.value} (edge)"}
+      node.value.edges.each {|e| puts "  #{e.key} (edge)"}
       node = node.next
     end
   end
@@ -55,7 +55,7 @@ class Graph
     v2 = find_vertex(key2)
     return unless v2
 
-    v1.edges.insert(v2.key)
+    v1.edges.insert(v2)
   end
 
   # def remove_vertex(key)
@@ -103,7 +103,7 @@ class Graph
 
   def adjacent?(key1, key2)
     vertex = find_vertex(key1)
-    return true if vertex.edges.contains?(key2)
+    return true if vertex.edges.contains?(find_vertex(key2))
     return false
   end
 
