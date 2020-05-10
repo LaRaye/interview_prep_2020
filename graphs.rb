@@ -123,21 +123,21 @@ end
 #   <     >
 #  4      5
 
-def is_a_route?(start_node, end_node)
-  return true if start_node == end_node
+def is_a_route?(start_vertex, end_vertex)
+  return true if start_vertex == end_vertex
 
   node_queue = Queue.new
-  node_queue.enqueue(start_node)
+  node_queue.enqueue(start_vertex)
 
   while (node_queue.length != 0)
-    current_node = node_queue.peek
+    current_node = node_queue.peek.value
     node_queue.dequeue
 
-    if current_node == end_node
+    if current_node == end_vertex
       return true
     else
-      current_node.value.edges.each do |e|
-        node_queue.enqueue(e)
+      current_node.edges.each do |e|
+        node_queue.enqueue(e.value)
       end
     end
   end
