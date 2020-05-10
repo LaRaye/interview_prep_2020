@@ -13,6 +13,15 @@ class LinkedList
       return node.value if node.value.key == key
     end
   end
+
+  def print_vertices
+    node = @head
+    while node != nil
+      puts "#{node.value.key} (vertex)"
+      node.value.edges.each {|e| puts "  #{e.value} (edge)"}
+      node = node.next
+    end
+  end
 end
 
 class Graph
@@ -77,10 +86,7 @@ class Graph
   end
 
   def print
-    @vertices.each do |v|
-      puts "#{v.value.key} (vertex)"
-      v.value.edges.each {|e| puts "  #{e.value} (edge)"}
-    end
+    @vertices.print_vertices
   end
 end
 
