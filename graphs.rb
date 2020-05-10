@@ -1,5 +1,19 @@
 require_relative "./linked_list.rb"
 require_relative "./set.rb"
+require_relative "./queue.rb"
+
+class LinkedList
+  def find_vertex(key)
+    node = @head
+    if !node || !node.next
+      return nil
+    end
+    return node.value if node.value.key == key
+    while (node = node.next)
+      return node.value if node.value.key == key
+    end
+  end
+end
 
 class Graph
   class Vertex
@@ -16,7 +30,7 @@ class Graph
   end
 
   def find_vertex(key)
-    @vertices.find_first {|v| v.value.key == key}
+    @vertices.find_vertex(key)
   end
 
   def insert_vertex(key)
@@ -83,6 +97,7 @@ end
 
 def is_a_route?(graph, start_node, end_node)
   return true if start_node == end_node
+
 
 
 end

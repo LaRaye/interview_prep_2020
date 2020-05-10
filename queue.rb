@@ -1,9 +1,9 @@
 class Queue
   class Node
-    attr_accessor :next, :data
+    attr_accessor :next, :value
 
-    def initialize data
-      self.data = data
+    def initialize(value)
+      self.value = value
       self.next = nil
     end
   end
@@ -20,8 +20,8 @@ class Queue
 
     # Inserts a new element into the queue.
     # Complexity O(1).
-  def enqueue data
-    node = Node.new data
+  def enqueue(value)
+    node = Node.new(value)
 
     unless head
       self.head = node
@@ -29,7 +29,7 @@ class Queue
       self.tail.next = node
     end
 
-    self.tail    = node
+    self.tail = node
     self.length += 1
   end
 
@@ -76,7 +76,7 @@ class Queue
     if self.length == 0
       puts "empty"
     else
-      self.each { |node| puts node.data }
+      self.each { |node| puts node.value }
     end
   end
 end
