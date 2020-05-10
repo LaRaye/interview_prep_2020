@@ -123,27 +123,24 @@ end
 #   <     >
 #  4      5
 
-def is_a_route?(graph, start_node, end_node)
+def is_a_route?(start_node, end_node)
   return true if start_node == end_node
 
   node_queue = Queue.new
   node_queue.enqueue(start_node)
 
   while (node_queue.length != 0)
-    value = node_queue.peek
+    current_node = node_queue.peek
     node_queue.dequeue
 
-    if value == end_node
+    if current_node == end_node
       return true
     else
-      value.edges.each do |e|
+      current_node.value.edges.each do |e|
         node_queue.enqueue(e)
       end
     end
-
-    
   end
 
-
-
+  return false
 end
