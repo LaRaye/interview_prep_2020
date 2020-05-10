@@ -69,6 +69,16 @@ class LinkedList
     end
   end
 
+  def find_first &predicate
+  	return nil unless block_given?
+
+  	current = self.head
+  	while current
+  		return current if predicate.call(current)
+  		current = current.next
+  	end
+  end
+
   def delete(value)
     if @head.value == value
       @head = @head.next

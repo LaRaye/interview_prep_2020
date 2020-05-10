@@ -46,7 +46,7 @@ class Graph
     v2 = find_vertex(key2)
     return unless v2
 
-    v1.value.edges.insert(v2.value.key)
+    v1.edges.insert(v2.key)
   end
 
   def remove_vertex(key)

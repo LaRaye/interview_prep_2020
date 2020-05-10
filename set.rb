@@ -11,13 +11,13 @@ class Set
 	# Complexity O(n)
 	def insert member
 		return if contains? member
-		@list.insert member
+		@list.append member
 	end
 
 	# Removes a member from the current set.
 	# Complexity O(n)
 	def remove member
-		node = @list.find_first { |nd| nd.data == member }
+		node = @list.find_first { |nd| nd.value == member }
 		@list.remove node if node
 	end
 
@@ -28,10 +28,10 @@ class Set
 		# Copy elements from current set.
 		# (Remember that insert does nothing if
 		# the member already exists.)
-		@list.each { |nd| res.insert(nd.data) }
+		@list.each { |nd| res.append(nd.value) }
 
 		# Copy elements from the other set.
-		other.each { |nd| res.insert(nd.data) }
+		other.each { |nd| res.append(nd.value) }
 		res
 	end
 
@@ -40,7 +40,7 @@ class Set
 	def intersect other
 		res = Set.new
 		@list.each do |nd|
-			res.insert(nd.data) if other.contains?(nd.data)
+			res.append(nd.value) if other.contains?(nd.value)
 		end
 		res
 	end
@@ -50,7 +50,7 @@ class Set
 	def diff other
 		res = Set.new
 		@list.each do |nd|
-			res.insert(nd.data) unless other.contains?(nd.data)
+			res.append(nd.value) unless other.contains?(nd.value)
 		end
 		res
 	end
@@ -59,7 +59,7 @@ class Set
 	# and false otherwise.
 	# Complexity O(n)
 	def contains? member
-		@list.find_first { |nd| nd.data == member }
+		@list.find_first { |nd| nd.value == member }
 	end
 
 	# Returns true is the current set is a subset of other set
@@ -70,7 +70,7 @@ class Set
 
 		# Slow check.
 		@list.each do |nd|
-			return false unless other.contains(nd.data)
+			return false unless other.contains(nd.value)
 		end
 		true
 	end
