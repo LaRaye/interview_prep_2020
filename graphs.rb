@@ -83,10 +83,31 @@ class LinkedList
   def find_before(value)
     node = @head
     return false if !node.next
-    return node  if node.next.value == value
+    return node if node.next.value == value
     while (node = node.next)
       return node if node.next && node.next.value == value
     end
+  end
+
+  def remove_next(prev_node)
+    return nil unless self.length > 0
+
+    unless prev_node
+      self.head = self.head.next
+    else
+      if prev_node.next == prev_node
+        self.head = nil
+      else
+        old = prev_node.next
+        prev_node.next = prev_node.next.next
+
+        if (old == self.head)
+          self.head = old.next
+        end
+      end
+    end
+
+    self.length -= 1
   end
 
   def print
