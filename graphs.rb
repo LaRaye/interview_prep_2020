@@ -9,6 +9,65 @@ class Graph
       self.key = key
       self.edges = Set.new
     end
+  end
+
+  def initialize
+    @vertices = LinkedList.new
+  end
+
+  def find_vertex(key)
+    @vertices.find_first {|v| v.value.key == key}
+  end
+
+  def insert_vertex(key)
+    return if find_vertex(key)
+    vertex = Vertex.new(key)
+    @vertices.append(vertex)
+  end
+
+  def insert_edge(key1, key2)
+    v1 = find_vertex(key1)
+    return unless v1
+
+    v2 = find_vertex(key2)
+    return unless v2
+
+    v1.value.edges.insert(v2.value.key)
+  end
+
+  def remove_vertex(key)
+    found = false
+    target = nil
+    prev = nil
+
+    @vertices.each do |v|
+      return if v.value.edges.contains?(key)
+
+      if v.value.key == key
+        found = true
+        target = v.value
+      end
+
+      prev = v unless found
+    end
+
+    return unless found
+    return unless target.edges.length == 0
+    @vertices.remove_next(prev)
+  end
+
+  def adjacent?(key1, key2)
+    vertex = find_vertex(key1).value
+    return true if vertex.edges.contains?(key2)
+    return false
+  end
+
+  def print
+    @vertices.each do |v|
+      puts "#{v.value.key} (vertex)"
+      v.value.edges.each {|e| puts "  #{e.value} (edge)"}
+    end
+  end
 end
 
 #Given a directed graph, design an algorithm to find out
