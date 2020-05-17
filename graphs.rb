@@ -3,6 +3,27 @@ require_relative "./set.rb"
 require_relative "./queue.rb"
 
 class LinkedList
+  def remove_next(prev_node)
+    return nil unless self.length > 0
+
+    unless prev_node
+      self.head = self.head.next
+    else
+      if prev_node.next == prev_node
+        self.head = nil
+      else
+        old = prev_node.next
+        prev_node.next = prev_node.next.next
+
+        if (old == self.head)
+          self.head = old.next
+        end
+      end
+    end
+
+    self.length -= 1
+  end
+
   def find_vertex(key)
     node = @head
     if !node || !node.next
@@ -58,48 +79,49 @@ class Graph
     v1.edges.insert(v2)
   end
 
-  # def remove_vertex(key)
-  #   found = false
-  #   target = nil
-  #   prev = nil
-  #
-  #   @vertices.each do |v|
-  #     return if v.value.edges.contains?(key)
-  #
-  #     if v.value.key == key
-  #       found = true
-  #       target = v.value
-  #     end
-  #
-  #     prev = v unless found
-  #   end
-  #
-  #   return unless found
-  #   return unless target.edges.length == 0
-  #   @vertices.remove_next(prev)
-  # end
+  def remove_vertex(key)
+    found = false
+    target = nil
+    prev = nil
 
-  # def remove_vertex(key)
-  #   found = false
-  #   target = nil
-  #   prev = nil
-  #
-  #   node = @vertices.head
-  #   while (node = node.next)
-  #     return if node.value.edges.contains?(key)
-  #
-  #     if node.value.key == key
-  #       found = true
-  #       target = node.value
-  #     end
-  #
-  #     prev = node unless found
-  #   end
-  #
-  #   return unless found
-  #   return unless target.edges.length == 0
-  #   @vertices.remove_next(prev)
-  # end
+    @vertices.each do |v|
+      return if v.value.edges.contains?(key)
+
+      if v.value.key == key
+        found = true
+        target = v.value
+      end
+
+      prev = v unless found
+    end
+
+    return unless found
+    return unless target.edges.length == 0
+    @vertices.remove_next(prev)
+  end
+
+  def remove_vertex(key)
+    found = false
+    target = nil
+    prev = nil
+
+    node = @vertices.head
+    while node != nil
+      return if node.value.edges.contains?(find_vertex(key))
+
+      if node.value.key == key
+        found = true
+        target = node.value
+      end
+
+      prev = node unless found
+      node = node.next
+    end
+
+    return unless found
+    return unless target.edges.length == 0
+    @vertices.remove_next(prev)
+  end
 
   def adjacent?(key1, key2)
     vertex = find_vertex(key1)
