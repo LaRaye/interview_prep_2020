@@ -39,4 +39,66 @@ class BinarySearchTree
     end
   end
 
+  # def delete(value)
+  #   node = search(self.root, value)
+  #   if node != nil
+  #     remove(node)
+  #   end
+  # end
+  #
+  # def remove(node)
+  #   if node.left == nil && node.right == nil
+  #     node = nil
+  #   elsif node.left != nil && node.right == nil
+  #     node = node.left
+  #   elsif node.left == nil && node.right != nil
+  #     node = node.right
+  #   elsif node.left != nil && node.right != nil
+  #     node = delete_with_2_children(node)
+  #   end
+  #
+  #   node
+  # end
+  #
+  # def delete_with_2_children(node)
+  #   min_node = find_min_node(node.right)
+  #   replace_value(min_node, node)
+  #   remove_min_node(min_node)
+  # end
+  #
+  # def find_min_node(node)
+  #   if node.left == nil
+  #     min_node = node
+  #     return find_min_node
+  #   else
+  #     find_min_node(node.left)
+  #   end
+  # end
+  #
+  # def replace_value(min_node, node)
+  #   node.value = min_node.value
+  # end
+  #
+  # def remove_min_node(min_node)
+  #   min_node = nil
+  # end
+
+end
+
+###############################
+
+def minimal_tree(arr)
+  bst = BinarySearchTree.new(nil)
+  bst.root = create_BST(arr, 0, arr.length - 1)
+  bst
+end
+
+def create_BST(arr, starting, ending)
+  return nil if (ending < starting)
+
+  midpoint = (starting + ending) / 2
+  node = Node.new(arr[midpoint])
+  node.left = create_BST(arr, starting, midpoint - 1)
+  node.right = create_BST(arr, midpoint + 1, ending)
+  return node
 end
