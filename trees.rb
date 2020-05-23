@@ -104,12 +104,12 @@ def create_BST(arr, starting, ending)
 end
 
 def depths_lists(tree)
-  node = tree.head
+  node = tree.root
   depth = 0
   level_lists = []
 
-  create_level_linkedlist(node, depth, levels)
-  return levels
+  create_level_linkedlist(node, depth, level_lists)
+  return level_lists
 end
 
 def create_level_linkedlist(node, depth, level_lists)
