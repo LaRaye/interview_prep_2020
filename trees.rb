@@ -102,3 +102,23 @@ def create_BST(arr, starting, ending)
   node.right = create_BST(arr, midpoint + 1, ending)
   return node
 end
+
+def depths_lists(tree)
+  node = tree.head
+  depth = 0
+  levels = []
+
+  create_level_linkedlist(node, depth, levels)
+  return levels
+end
+
+def create_level_linkedlist(node, depth, levels)
+  return unless node
+
+  if depth == 0
+    list = LinkedList.new
+    list.append(node)
+  else
+
+  end 
+end
