@@ -115,11 +115,7 @@ end
 def create_level_linkedlist(node, depth, level_lists)
   return unless node
 
-  if depth == 0
-    list = LinkedList.new
-    list.append(node)
-    level_lists << list
-  elsif level_lists[depth]
+  if level_lists[depth]
     level_lists[depth].append(node)
   else
     list = LinkedList.new
