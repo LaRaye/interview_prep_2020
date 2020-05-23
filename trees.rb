@@ -121,7 +121,12 @@ def create_level_linkedlist(node, depth, level_lists)
     level_lists << list
   elsif level_lists[depth]
     level_lists[depth].append(node)
-  else 
-
+  else
+    list = LinkedList.new
+    list.append(node)
+    level_lists << list
   end
+
+  create_level_linkedlist(node.left, depth + 1, level_lists) if node.left
+  create_level_linkedlist(node.right, depth + 1, level_lists) if node.right
 end
