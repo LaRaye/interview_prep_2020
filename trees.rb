@@ -106,19 +106,22 @@ end
 def depths_lists(tree)
   node = tree.head
   depth = 0
-  levels = []
+  level_lists = []
 
   create_level_linkedlist(node, depth, levels)
   return levels
 end
 
-def create_level_linkedlist(node, depth, levels)
+def create_level_linkedlist(node, depth, level_lists)
   return unless node
 
   if depth == 0
     list = LinkedList.new
     list.append(node)
-  else
+    level_lists << list
+  elsif level_lists[depth]
+    level_lists[depth].append(node)
+  else 
 
-  end 
+  end
 end
