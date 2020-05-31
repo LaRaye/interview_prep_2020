@@ -127,12 +127,13 @@ def create_level_linkedlist(node, depth, level_lists)
   create_level_linkedlist(node.right, depth + 1, level_lists) if node.right
 end
 
+
 def valid_BST?(node, min = -1.0/0, max = 1.0/0)
-  return true if !node
-
-  if (node.value < min || node.value > max)
+  if !node
+    return true
+  elsif (node.value < min || node.value > max)
     return false
+  else
+    return valid_BST?(node.left, min, node.value) && valid_BST?(node.right, node.value, max)
   end
-
-  return valid_BST?(node.left, min, node.value) && valid_BST?(node.right, node.value, max)
 end
