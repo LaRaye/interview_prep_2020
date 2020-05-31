@@ -132,7 +132,7 @@ def valid_BST?(node, min, max)
 
   if (node.value < min || node.value > max)
     return false
-  end 
+  end
 
-
+  return valid_BST?(node.left, min, node.value) && valid_BST?(node.right, node.value, max)
 end
