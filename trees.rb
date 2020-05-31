@@ -127,6 +127,8 @@ def create_level_linkedlist(node, depth, level_lists)
   create_level_linkedlist(node.right, depth + 1, level_lists) if node.right
 end
 
-def valid_BST?()
+def valid_BST?(node, min, max)
+
+  return true if !node 
 
 end
